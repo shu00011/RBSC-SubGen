@@ -1,0 +1,712 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>RBSC-SubGen</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="26bc7321-cd44-43e4-b9e4-f51113519a54" class="page sans"><header><h1 class="page-title">RBSC-SubGen</h1></header><div class="page-body"><p id="2bead11a-3a67-4368-a86d-33ce99a43957" class="">
+</p><nav id="6556f40f-a368-43d4-8434-47e9d3d5aea1" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#0083bf7e-f862-456c-adce-12a2f351df97">Purpose of this application</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5730fc62-57e1-4353-9039-499662253585">Situations where RBSC-SubGen can be useful</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#144cc81e-3beb-4624-ada9-692db04cf7e4">How to use?</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#dfd0574d-130c-40f9-94a0-d1539a1dd1bf">1.  Data upload</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7cb37506-b4c1-4bda-8bab-c88348ad03bf">2. Input parameters</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f1a9a6e7-58cd-4f8a-be70-47dc8a7ef20f">3. Visualization parameters</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e42e22b4-0b18-4226-9d62-2187e6565b77">4. Run!</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#512d9ee9-0a0d-4958-8739-f6d14c75ff6d">5. Outputs</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#964fc6a7-bb5f-44cd-b21f-7f7877cb0cf8">6. The maximum number of iteration</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c6856304-7e48-4899-a6cf-76e835b31cd7">For example</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a90a7d99-b4a8-4674-9bed-9f6caf7ca893">1. Data upload</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c673fb3c-e23e-4098-9ad3-bb7ecedb9ea3">2.Input parameters</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#62464ed8-2300-4c7b-87cb-4e9246a66a9f">3. Visualization parameter</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#03091a17-77b2-4a8d-a858-dc570bfcb487">4. Outputs</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#d7d5d00c-6f9c-451c-aac4-c5e421d0e99c">FAQ</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d901f291-588b-4fa4-bc00-075f26d156e4">Where to save and delete your CSV data file and CSV file of the subsets?</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1e95c74c-551c-4709-a915-b3ecc15a0ba6">Why does RBSC-SubGen return two subsets?</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#03e1cff4-726a-4cc0-be75-b5b6569c2834">Source code</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e8d6e452-0a5b-479f-bcd4-c59bb36c4462">The web application</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#224f37fd-5338-40ad-b020-4eb3caadd8e4">Glossary</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4d83fb1b-f89f-4831-8a15-edd048be730a"><mark class="highlight-purple_background">How to use?(日本語 ver.)</mark></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b3e49b4f-f955-46ca-aa97-18ed14e9da09">本Webアプリケーションの目的</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#580af648-1b9a-47f2-9ea2-bf308c842451">RBSC-SubGenが役立つ場面</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#be9c6601-863a-4a95-b335-06910e948aea">具体例</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#35ae7868-4c7f-49ee-9418-e470d6e8cb0b">Slide<mark class="highlight-gray">（スライド資料）</mark></a></div></nav><p id="ed0cad05-f6f1-4e1e-8a60-af8ddd8b497a" class="">
+</p><p id="b7d1c55e-0a4c-432a-b7da-5ebe796decae" class="block-color-red">※下部に日本語用に抜粋したHow to use?があります．目次からとぶことも可能です．</p><p id="a7a7d4f2-7467-4918-ae6a-83266bb6ef6b" class="">
+</p><h2 id="0083bf7e-f862-456c-adce-12a2f351df97" class="">Purpose of this application</h2><p id="5f2141f1-4b07-40b1-875c-78fa4a55139d" class="">Provide <a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/RBSC-SubGen%2034f1b950b4ec43aa8ed55d4f6292706e.html">RBSC-SubGen</a> for users who want to solve <a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/Subset%20selection%20problems%20c794c9a48ae842b1ba15ebb510b4098e.html">subset selection problems</a>.</p><p id="5abd2a00-8855-4188-afa5-f04562fea41f" class="">(<a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/RBSC-SubGen%2034f1b950b4ec43aa8ed55d4f6292706e.html">RBSC-SubGen</a> is a type of <a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/Subset%20selection%20problems%20c794c9a48ae842b1ba15ebb510b4098e.html">subset selection problems</a> solving method.)</p><p id="606a30b9-d2ab-4c2f-ad00-b9e861b9b7c7" class="">Specifically, the web application allows to retrieve two subsets of one or two items that matches the desired <a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/RBSC%20coefficient%2011343addfbc64daf9474479bbe627bda.html">RBSC coefficient</a>.</p><p id="3ebbca66-052e-49ca-bb18-6e14eca2da6f" class="">Comparing two subsets with different properties will help you solve your problem.</p><p id="40359b89-95db-44b2-b91d-6fa2ef808050" class="">
+</p><h2 id="5730fc62-57e1-4353-9039-499662253585" class="">Situations where RBSC-SubGen can be useful</h2><ul id="3e0e51b2-6a4e-4990-b107-0c0bc161d1be" class="bulleted-list"><li style="list-style-type:disc">The construction of a representative subset allows processing in cases where there are not sufficient financial or computational resources to process all available data.</li></ul><ul id="73857ea3-eb5e-43ec-bed6-94f5d226b9dd" class="bulleted-list"><li style="list-style-type:disc">Provide reliable results when the data is known to contain noise.
+(because one item selected at a time may not be the optimal solution).</li></ul><ul id="a02ba603-af58-4fa9-95f4-a2bdf61f6c1e" class="bulleted-list"><li style="list-style-type:disc">A posteriori analysis of subsets may yield better results than a posteriori analysis of a single solution.</li></ul><p id="721cf74c-9ff5-490a-a7d3-edccf2731d5b" class="">
+</p><h2 id="144cc81e-3beb-4624-ada9-692db04cf7e4" class="">How to use?</h2><h3 id="dfd0574d-130c-40f9-94a0-d1539a1dd1bf" class="">1.  Data upload</h3><p id="bdf72cae-0657-44f5-b1dc-e99459b8c259" class="">Please upload the dataset to <em><strong>load a CSV data file</strong></em>.</p><p id="3a6c0361-83ef-48a1-a22d-9fab112dc076" class="">Compatible file formats are CSV or dataframe.These values can have floating point precision. </p><p id="fd990d95-b996-44f4-9ee1-5a61a18dedeb" class="">After uploading a dataset, the contents of the dataset are displayed as a dataframe. </p><p id="d5d505c2-f5d5-47b6-a0a2-0f8c00be6126" class="">It then allows the selection of a reference column to extract two subsets from the <mark class="highlight-blue_background">universal set</mark>. You can select one or two columns.</p><p id="cbb30016-6f33-4e8d-b8fd-96ca4a92a738" class="">Moreover, after uploading the data file, the size of the <mark class="highlight-blue_background">universal set</mark> is initialized automatically as the number of data points.</p><p id="1a9b26fb-8ba8-4e67-87f9-a46aa4de0506" class="">
+</p><h3 id="7cb37506-b4c1-4bda-8bab-c88348ad03bf" class="">2. Input parameters</h3><p id="2a521a9b-63a2-4409-bea7-d5d70aad8421" class="">Please input directly into text fields.</p><ul id="cb4082e5-0384-4bb2-9b85-38b8172f31b7" class="bulleted-list"><li style="list-style-type:disc">Subset size<p id="efceabba-44eb-4f5c-8b31-8091fd5bb47e" class="">Subset size is any positive integer and be less than the size of <mark class="highlight-blue_background">universal set</mark>. (If two columns are selected in <em><strong>1. Data upload</strong></em>, the size of the subset must be less than <mark class="highlight-blue"><em>1/8</em></mark> of the size of universal set.)</p></li></ul><ul id="d0207338-005c-4314-b4c1-510b2bde625c" class="bulleted-list"><li style="list-style-type:disc"><a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/RBSC%20coefficient%2011343addfbc64daf9474479bbe627bda.html">RBSC coefficient</a><p id="eeef584c-ff7e-41f6-a048-0073dcbfb451" class="">RBSC coefficients is a real number in the range [-1, 1].</p></li></ul><ul id="69d64f30-5e57-4882-ae86-17cb26219699" class="bulleted-list"><li style="list-style-type:disc">Tolerable error<p id="a14ec669-92bc-436e-aa29-ac98d7751030" class="">Tolerable error is the tolerance between the desired RBSC coefficients and the actual calculated RBSC coefficients.</p><p id="c908c5f8-f64f-458d-aeec-2a4acb75d01c" class="">It is a real number in the range [0, 1].</p></li></ul><p id="3d7bfbe3-ea41-42c1-8a93-653efbd76cf6" class="">
+</p><h3 id="f1a9a6e7-58cd-4f8a-be70-47dc8a7ef20f" class="">3. Visualization parameters</h3><p id="260d4ea9-e38f-47d3-8796-2a3640e4c866" class="">Please input the number of histogram bins. This is a parameter that specifies the number of bins in the histogram of the distribution of the output subsets.
+This parameter is an arbitrary positive integer and must be greater than or equal to 1. </p><p id="d44155bc-bf0b-4591-9b5b-2089659af9d8" class="">
+</p><h3 id="e42e22b4-0b18-4226-9d62-2187e6565b77" class="">4. Run!</h3><p id="0b7396ed-89f0-4b92-92bd-ce777fa1fd50" class="">When you have completed steps 1 through 3, press the <em><strong>Run</strong></em> button. Processing will begin.</p><p id="783a0eca-0891-4908-914d-3c303ba436f6" class="">
+</p><h3 id="512d9ee9-0a0d-4958-8739-f6d14c75ff6d" class="">5. Outputs</h3><ul id="e44fda46-fa14-4335-8266-714102bd3606" class="bulleted-list"><li style="list-style-type:disc">the histograms of the distributions of the data points (i.e. ranks) in the output subsets．<p id="ca5c87b5-7c95-4d9f-ba48-37720f8dd0ce" class="">This gives an idea on how different the data points of the two subsets are.</p><p id="9c762af3-82d4-48e1-97dd-10a600b5c419" class="">This allows visualization of the degree to which the distribution of the output data elements differs. </p><p id="5ec216d9-9b4f-44cf-bbd4-22566c172415" class="">The histogram can be downloaded as an PNG file.</p></li></ul><ul id="73b9af3a-e1c1-407a-82f5-78089aad65de" class="bulleted-list"><li style="list-style-type:disc">CSV file of the subsets<p id="db269e51-7534-4c70-8deb-c4f4de17eab2" class="">The datasets of the two subsets are displayed as data frames.</p><p id="e50940b7-9b66-4c58-aa22-8125e10464af" class="">The subsets can be downloaded as a CSV file by pressing the <em><strong>Download data as CSV</strong></em> button.</p></li></ul><ul id="4ccb3034-e011-45cd-ad29-c48ce0831c31" class="bulleted-list"><li style="list-style-type:disc">The actual value of the RBSC coefficient<p id="455b23bd-ce5c-40bb-befc-1ccfdac7e04d" class="">It is calculated from the two generated subsets.</p></li></ul><ul id="680796ed-7581-4b57-b42a-bffac1806a2c" class="bulleted-list"><li style="list-style-type:disc">Elapsed time<p id="a47e5ff9-5a16-4d4e-971a-17137d21ea5f" class="">The processing time is reported as the time elapsed from the instant the Run button is pressed until the results are reported.</p><p id="724ef6de-eebb-4369-a3a5-ed3d27e7f0a1" class="">
+</p></li></ul><h3 id="964fc6a7-bb5f-44cd-b21f-7f7877cb0cf8" class="">6. The maximum number of iteration</h3><p id="c47cdd9b-c972-4567-849e-0493eefe15f0" class="">If you cannot create the expected subset, change Max. number of trials.</p><p id="23ef1a62-2f2f-4227-b4cd-79c57d145b6d" class="">Confirming feasibility based on set sizes shows that there is a possibility of obtaining a solution, but it does not guarantee that a solution exists. </p><p id="87cf36b6-00bf-466c-b43b-c9dac00d8002" class="">In order to avoid infinite loops, the maximum number of iteration is defined, over which the algorithm aborts.</p><p id="5b366a88-0aa6-4385-9a96-8705f2424af1" class="">By default, the maximum number of iteration is specified as 30.</p><p id="22fb4fcd-81b3-4928-b33b-b5f1c0db4eaa" class="">
+</p><h2 id="c6856304-7e48-4899-a6cf-76e835b31cd7" class="">For example</h2><p id="aaee07a0-954f-4c86-b90f-a06b0c183c90" class="">In this section, the usage flow of this web application will be explained using <a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset">the diabetes dataset</a> as an example.
+Let us assume that, when creating a new diabetes drug, we want to investigate how the characteristics of the subjects affect how the drug works and how effective the treatment is.</p><h3 id="a90a7d99-b4a8-4674-9bed-9f6caf7ca893" class="">1. Data upload</h3><p id="75311fce-efd7-4627-9d36-6acec528048d" class="">First, upload the diabetes dataset to the <em><strong>Load a CSV data file</strong></em> in the <em><strong>Data upload</strong></em> field of the web application. </p><p id="f169e8bb-2e8c-43c7-afcb-8860a979d173" class="">The contents of the dataset will then be displayed, allowing the selection of the columns on which to base the subset from the <mark class="highlight-blue_background">universal set</mark>. The number of elements in the whole set is automatically initialized from the number of elements in the data and displayed.
+The columns to be applied to the algorithm (i.e., subject characteristics) are selected here as BMI and Glucose. Although the BMI and Glucose features are used in this case, it is possible to generate a subset using other features instead of these features based on the application examples presented here. The application can also be extended to consider more features in order to generate subsets based on three or four features instead of only two.</p><p id="63d675e1-ae66-40e1-92fc-5515e39f791f" class="">
+</p><h3 id="c673fb3c-e23e-4098-9ad3-bb7ecedb9ea3" class="">2.Input parameters</h3><p id="416fc971-7551-47a7-a351-21904156592b" class="">The remaining input values are entered directly in the text field at 2. </p><p id="6112e65e-7361-4b2c-92cf-3d214c0f4c03" class="">Set each value as follows:</p><table id="31732457-e8e0-401d-b4c7-b891c21969b0" class="simple-table"><thead class="simple-table-header"><tr id="1c236f8f-4df9-459d-a32f-733456c71f6e"><th id="`&lt;fq" class="simple-table-header-color simple-table-header" style="width:277.5px">Value name</th><th id="\yin" class="simple-table-header-color simple-table-header" style="width:277.5px">Value to be set</th></tr></thead><tbody><tr id="07f16c1e-f6b9-4404-87a4-f63f7771fe3e"><td id="`&lt;fq" class="" style="width:277.5px">Subset size</td><td id="\yin" class="" style="width:277.5px">25</td></tr><tr id="a87a0c3a-6106-431d-830b-46643d725072"><td id="`&lt;fq" class="" style="width:277.5px">RBSC coefficient for BMI</td><td id="\yin" class="" style="width:277.5px">0.5<mark class="highlight-gray"> (to create two groups with no significant differences)</mark></td></tr><tr id="91ff6146-8461-43ff-a15c-febdf7c3ee72"><td id="`&lt;fq" class="" style="width:277.5px">RBSC coefficient for Glucose</td><td id="\yin" class="" style="width:277.5px">0.75<mark class="highlight-gray"> (to create two groups with differences)</mark></td></tr><tr id="c73a9422-79f4-46fa-b3b8-3454c8c5c350"><td id="`&lt;fq" class="" style="width:277.5px">Tolerable error</td><td id="\yin" class="" style="width:277.5px">0.05</td></tr></tbody></table><p id="00272150-08f1-41b0-94f0-efe534b6c9df" class="">Here, the RBSC coefficient for BMI is set to 0.5 and the RBSC coefficient for Glucose to 0.75.</p><p id="28183599-174c-4367-b0ac-d76fee0236eb" class="">The RBSC coefficients take values from -1 to 1. The closer to 1, the more difference there is between the two subsets.</p><p id="3447c772-f695-4ac6-98b7-b265a8f73c13" class="">(That is, by generating two subsets that do not differ significantly in terms of BMI but have biased Glucose values, we can examine whether Glucose values make a difference in the efficacy of the drug.)</p><p id="9e32e674-dd4c-4ff6-8609-f60dbd7548e1" class="">Therefore, we can expect the two generated subsets to be biased toward the lower or higher of the two for the Glucose item, although the BMI is not much different between the two.</p><p id="b73f90cf-47b2-4fc4-b248-694adc6e98fc" class="">
+</p><h3 id="62464ed8-2300-4c7b-87cb-4e9246a66a9f" class="">3. Visualization parameter</h3><p id="24d67a8c-5a46-47ad-96b9-1c260ef57365" class="">Finally, enter the number of histogram <mark class="highlight-teal_background">bins</mark> representing the distribution of the elements of the subset to be output in <strong><em>3. visualization parameter</em></strong>. In this case, the value is set to <mark class="highlight-teal_background"><em><strong>10</strong></em></mark>.</p><p id="e38d71a3-fe6b-4fb0-8651-49993d6c5799" class="">After all values have been entered, press the Run button to begin processing.</p><p id="0dbebdde-600a-4bdf-b210-8bd294fc2531" class="">
+</p><h3 id="03091a17-77b2-4a8d-a858-dc570bfcb487" class="">4. Outputs</h3><p id="02417017-21a0-4d15-ac4c-14a1dda48634" class="">After the algorithm has been successfully executed, the subset can be downloaded and certain information about the output and computational performance is reported.</p><p id="d027ca77-867c-405c-9efa-384db0c23f14" class="">First, the distribution of data elements in the output subset is displayed as a histogram. The graph shows the number of elements on the vertical axis and the value at which each element is distributed on the horizontal axis. This makes it possible to visualize how different the distributions of the output data elements are (i.e., how many elements in each of the two subsets have the same characteristics).</p><p id="9aa9f8ff-dfe4-4d6b-830d-ffc69f9c8151" class="">By comparing the two subsets generated in this way, it is possible to investigate how the effect of the drug varies for subjects with different characteristics.</p><p id="b38ba2da-3363-4a51-8902-c0ea74a6cefc" class="">
+</p><p id="ad4514b3-949f-424a-9b7a-c4a743c57ec8" class="">In this example, two subject features, BMI and Glucose, were selected to generate a subset.</p><p id="90aa5c73-c123-44e9-a5dc-901e16152b12" class="">It is also possible to extend the method to generate subsets based on three or four features, not just two.
+Of course, it is also possible to select features other than BMI and Glucose.</p><p id="37096ffe-adb1-41df-90ec-71ab856221d1" class="">
+</p><h2 id="d7d5d00c-6f9c-451c-aac4-c5e421d0e99c" class="">FAQ</h2><h3 id="d901f291-588b-4fa4-bc00-075f26d156e4" class="">Where to save and delete your CSV data file and CSV file of the subsets?</h3><p id="137e8e0a-8cde-4713-ab02-91799f5d46f4" class="">1. Your CSV data</p><blockquote id="e27224c9-feb5-4ec8-81de-2d4207c0d7e7" class="">When you upload a CSV data file, the data are copied to the Streamlit backend via the browser, and contained in a BytesIO buffer in Python memory(i.e. RAM, not disk). The data will persist in RAM until the Streamlit app re-runs from top-to-bottom, which is on each widget interaction. </blockquote><blockquote id="186478b1-0496-49a5-af46-ffb826d94792" class="">As files are stored in memory, they get deleted immediately as soon as they&#x27;re not needed anyone. </blockquote><blockquote id="a9394eb0-8bc2-4cc4-b0df-c7839851281f" class="">This means the app removes a file from memory when:</blockquote><ul id="96d92f36-2cec-4010-a1b2-a149ab9beda9" class="bulleted-list"><li style="list-style-type:disc">The user uploads another file, replacing the original one.</li></ul><ul id="8d37bccf-7e7f-44f2-b63c-e52766fa2d96" class="bulleted-list"><li style="list-style-type:disc">The user clears the file uploader.</li></ul><ul id="8f5d9aa8-f808-436b-90da-40801c0a7b78" class="bulleted-list"><li style="list-style-type:disc">The user closes the browser tab when they uploaded the file.</li></ul><figure id="abca7c42-e4bc-4514-9a01-4384e76b0c15"><a href="https://docs.streamlit.io/knowledge-base/using-streamlit/where-file-uploader-store-when-deleted" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Where does st.file_uploader store uploaded files and when do they get deleted? - Streamlit Docs</div><div class="bookmark-description">When you upload a file using st.file_uploader , the data are copied to the Streamlit backend via the browser, and contained in a BytesIO buffer in Python memory (i.e. RAM, not disk). The data will persist in RAM until the Streamlit app re-runs from top-to-bottom, which is on each widget interaction.</div></div><div class="bookmark-href"><img src="https://docs.streamlit.io/favicon.ico" class="icon bookmark-icon"/>https://docs.streamlit.io/knowledge-base/using-streamlit/where-file-uploader-store-when-deleted</div></div><img src="https://docs.streamlit.io/sharing-image-facebook.jpg" class="bookmark-image"/></a></figure><p id="4a6ae949-304e-45c9-b060-d80e2631cd25" class="">
+</p><p id="ac3a4355-b33e-4d2a-9540-fa8170306e05" class="">2. CSV file of the subsets</p><blockquote id="583997a7-18c8-45f5-bb0b-3c39e5cb604b" class="">output.csv is stored in-memory while the user is connected, so it&#x27;s a good idea to keep file sizes under a couple hundred megabytes to conserve memory.</blockquote><figure id="7a26a1a1-c91d-4e9e-8ea5-279dee9548df"><a href="https://docs.streamlit.io/library/api-reference/widgets/st.download_button" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">st.download_button - Streamlit Docs</div><div class="bookmark-description">Function signature st.download_button(label, data, file_name=None, mime=None, key=None, help=None, on_click=None, args=None, kwargs=None, *, disabled=False) Parameters The MIME type of the data. If None, defaults to &quot;text/plain&quot; (if data is of type str or is a textual file) or &quot;application/octet-stream&quot; (if data is of type bytes or is a binary file).</div></div><div class="bookmark-href"><img src="https://docs.streamlit.io/favicon.ico" class="icon bookmark-icon"/>https://docs.streamlit.io/library/api-reference/widgets/st.download_button</div></div><img src="https://docs.streamlit.io/sharing-image-facebook.jpg" class="bookmark-image"/></a></figure><p id="f394d8c2-fe07-4177-8c28-66e2debc107d" class="">
+</p><h3 id="1e95c74c-551c-4709-a915-b3ecc15a0ba6" class="">Why does RBSC-SubGen return two subsets?</h3><p id="940af7bc-1391-45bc-bfe7-65a528a5d624" class="">Originally, <a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/RBSC-SubGen%2034f1b950b4ec43aa8ed55d4f6292706e.html">RBSC-SubGen</a> was developed for the purpose of rating the difficulty of word collections (easy, hard), and was designed to return two subsets.
+In this case, the RBSC-SubGen returns two subsets because there is only one RBSC coefficient for each item.</p><p id="0b5f18de-9e5d-4564-a02c-3e4fa7d404bf" class="">
+</p><h2 id="03e1cff4-726a-4cc0-be75-b5b6569c2834" class="">Source code</h2><p id="8208fac6-3a75-43c7-800c-a3cdf64b10d2" class="">The codes developed for the web application reported in this article are released in our repository.</p><figure id="e834d198-692d-4147-863d-a61799a4ebfd"><div class="source">https://github.com/shu00011/rbsc_streamlit_prototype</div></figure><p id="62b734f7-50dd-4529-8270-7e3fdbb62929" class="">
+</p><h2 id="e8d6e452-0a5b-479f-bcd4-c59bb36c4462" class="">The web application</h2><figure id="a7fe221c-8d7a-40ae-90f7-e6bf20f6e1aa"><a href="https://shu00011-rbsc-streamlit-prototype-main-c04t3w.streamlit.app/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">main · Streamlit</div><div class="bookmark-description">RBSCアルゴリズムをWebアプリケーション上で利用できるようにしました．</div></div><div class="bookmark-href">https://shu00011-rbsc-streamlit-prototype-main-c04t3w.streamlit.app/</div></div><img src="https://storage.googleapis.com/s4a-prod-share-preview/default/st_app_screenshot_image/2323d1a8-fb76-4610-bb3f-1f0d5a61e3b9/Home_Page.png" class="bookmark-image"/></a></figure><h2 id="224f37fd-5338-40ad-b020-4eb3caadd8e4" class="">Glossary</h2><div id="f87ed005-4029-4d5e-a70c-a0a99c8ffe7e" class="collection-content"><h4 class="collection-title">Glossary</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>name</th></tr></thead><tbody><tr id="6e08352c-b35d-4449-82ad-cce049e7a89e"><td class="cell-title"><a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/RBSC%206e08352cb35d444982adcce049e7a89e.html">RBSC</a></td></tr><tr id="11343add-fbc6-4daf-9474-479bbe627bda"><td class="cell-title"><a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/RBSC%20coefficient%2011343addfbc64daf9474479bbe627bda.html">RBSC coefficient</a></td></tr><tr id="34f1b950-b4ec-43aa-8ed5-5d4f6292706e"><td class="cell-title"><a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/RBSC-SubGen%2034f1b950b4ec43aa8ed55d4f6292706e.html">RBSC-SubGen</a></td></tr><tr id="c794c9a4-8ae8-42b1-ba15-ebb510b4098e"><td class="cell-title"><a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/Subset%20selection%20problems%20c794c9a48ae842b1ba15ebb510b4098e.html">Subset selection problems</a></td></tr></tbody></table></div><p id="a24916da-e38c-48f0-bf49-d182fe6773cb" class="">
+</p><hr id="5849a260-1f0e-4090-a7f3-c62be31b7e5f"/><p id="8e4cc1a5-caf4-4c30-b793-93cc25a2b49f" class="">
+</p><h2 id="4d83fb1b-f89f-4831-8a15-edd048be730a" class=""><mark class="highlight-purple_background">How to use?(日本語 ver.)</mark></h2><p id="f857f383-1e34-4bfe-827f-48dff6890276" class="">
+</p><h3 id="b3e49b4f-f955-46ca-aa97-18ed14e9da09" class="">本Webアプリケーションの目的</h3><p id="b1e3437b-827c-42f5-8a0c-e7b25b745081" class=""><a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/Subset%20selection%20problems%20c794c9a48ae842b1ba15ebb510b4098e.html">部分集合選択問題</a>を解決したいユーザ向けに，<a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54.html">RBSC-SubGen</a>を提供します．</p><p id="e5ffbfec-78c7-422b-a84b-e092ca29d45f" class="">（<a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54.html">RBSC-SubGen</a>は，<a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/Subset%20selection%20problems%20c794c9a48ae842b1ba15ebb510b4098e.html">部分集合選択問題</a>の解法の一種です．）</p><p id="dfba9a5c-615b-42c3-8499-662ae53e802e" class="">具体的には，このWebアプリケーションにより所望する<a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/RBSC%20coefficient%2011343addfbc64daf9474479bbe627bda.html">RBSC係数</a>に基づいた2つの部分集合を取得することを可能にします．</p><p id="9649e959-e2f1-496f-b9f5-20d0cbc1b01c" class="">異なる特性を持つ2つの部分集合を比較することで，みなさんの問題解決の手伝いになります．</p><p id="94666231-22bb-42c8-ac4f-9f72e6e1585d" class="">
+</p><h3 id="580af648-1b9a-47f2-9ea2-bf308c842451" class="">RBSC-SubGenが役立つ場面</h3><ul id="6dd7ba29-1b44-4c01-87dd-69e7978290f8" class="bulleted-list"><li style="list-style-type:disc">利用可能なすべてのデータを処理する際に十分な資金や計算資源がない場合においても，代表的な部分集合の構築によって処理を可能にします．</li></ul><ul id="f42fa6b9-6398-4d44-8094-26d86fa6be72" class="bulleted-list"><li style="list-style-type:disc">データにノイズが含まれていることが分かっている場合に信頼性の高い結果を得ることができます（一度に選択した1つの項目が最適解とは限らないため）．</li></ul><ul id="7287a145-285f-44b0-bbb9-21369ae8811f" class="bulleted-list"><li style="list-style-type:disc">部分集合の事後分析の方が単一の解についての事後分析よりも良い知見を得られる可能性があります．</li></ul><p id="3369d490-f047-4cc4-8a4d-6d4054e2ab92" class="">
+</p><h3 id="be9c6601-863a-4a95-b335-06910e948aea" class="">具体例</h3><p id="c471c4e7-48b3-4394-9fa9-be930163bfc4" class=""><a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset">糖尿病のデータセット</a>を用いて例を示しながら本Webアプリケーションの使用の流れについて説明します．
+ここでは，「新たな糖尿病治療薬を作成する際，被験者の特徴によって薬の効き方や治療の効果にどのような影響があるか調べたい」と仮定します．</p><p id="88c357a2-f2dd-4796-a3be-f1fcc1479278" class="">
+</p><p id="586cc9fa-2af7-498f-84c3-c5981fcfe2eb" class=""><strong>1.　Data upload</strong></p><p id="89af317d-4308-4e76-95a7-f6057631fb0b" class="">まず糖尿病のデータセットをWebアプリケーションの<em><strong>1. Data upload</strong></em>欄の<em><strong>Load a CSV data file</strong></em>へアップロードします．ここで，互換性のあるファイル形式はデータフレームまたはCSVです．</p><p id="0838f970-dbee-48ed-8243-20d670aae6a7" class=""><mark class="highlight-gray">（これらの値は浮動小数点数を持つことができます．）</mark></p><p id="4f16c6ea-1499-4782-8e60-39d69a7f8f84" class="">すると，データセットの内容が表示され，全体集合から部分集合を取り分けるための基準とするカラムの選択が可能となります．カラムは1つまたは2つ選択できます．また，データの要素数から全体集合の要素数が自動的に初期化され表示されます．
+カラム（つまり，被験者の特徴）は，ここではBMIとGlucoseを選択します．</p><p id="4f270473-5b8e-4fcf-a6e5-47ad1917d630" class=""><mark class="highlight-gray">（今回はBMIやGlucoseの特徴を使用しますが，今回紹介する応用例を基にこれらの特徴の代わりに別の特徴を使用して部分集合を生成することも可能です．また，2つだけではなく3つ4つの特徴を基にした部分集合を生成するためにこの応用例を拡張してより多くの特徴を考慮することもできます．）</mark></p><p id="3615a518-d42a-4eda-85dd-ec3da1287d85" class="">
+</p><p id="b26b2ac0-fa0b-4dab-bb10-f82ec64da530" class=""><strong>2.　Input parameters</strong></p><p id="361ab02f-0736-4f38-a23b-0490f9b74e8a" class="">残りの入力値は<em><strong>2. Input parameters</strong></em>にて，テキストフィールドに直接入力します．</p><p id="f3432cf6-1720-4f4d-8e1e-c8ef2836dd7d" class="">各要素の値は以下のように設定します．</p><table id="4e61484d-aa9c-4ccf-9705-94fe96bdbcff" class="simple-table"><thead class="simple-table-header"><tr id="9c3e90e5-f6ad-4136-ad56-b968dd799f34"><th id="`&lt;fq" class="simple-table-header-color simple-table-header" style="width:277.5px">Value name</th><th id="\yin" class="simple-table-header-color simple-table-header" style="width:277.5px">Value to be set</th></tr></thead><tbody><tr id="8add2ed6-9e45-4618-b9f2-a1cd60c7de47"><td id="`&lt;fq" class="" style="width:277.5px">Subset size</td><td id="\yin" class="" style="width:277.5px">25</td></tr><tr id="2494a93a-dbbb-4006-bfb1-a595dbf1bf78"><td id="`&lt;fq" class="" style="width:277.5px">RBSC coefficient for BMI</td><td id="\yin" class="" style="width:277.5px">0.5<mark class="highlight-gray"> (大きな違いのない2つのグループを作る)</mark></td></tr><tr id="39b53e41-eedc-41e6-9128-12bfe4581848"><td id="`&lt;fq" class="" style="width:277.5px">RBSC coefficient for Glucose</td><td id="\yin" class="" style="width:277.5px">0.75<mark class="highlight-gray"> (違いがある2つのグループを作る）</mark></td></tr><tr id="93275b15-69e8-4b4b-8bac-66457429cd4f"><td id="`&lt;fq" class="" style="width:277.5px">Tolerable error</td><td id="\yin" class="" style="width:277.5px">0.05</td></tr></tbody></table><p id="e8f7e649-14ce-433e-a4c3-867f21d74b79" class="">ここで，BMIの<a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/RBSC%20coefficient%2011343addfbc64daf9474479bbe627bda.html">RBSC係数</a>を0.5，Gulcoseの<a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/RBSC%20coefficient%2011343addfbc64daf9474479bbe627bda.html">RBSC係数</a>を0.75としました．</p><p id="eacc2c89-8d20-4914-b0af-a26ebee3ae69" class="">RBSC係数は-1から1の値をとりますが，1に近いほど2つの部分集合に差が生まれます．</p><p id="27492168-c326-4777-ae65-32a244ae2f9c" class="">そのため，生成される部分集合2つは，BMIは両者とも大差がありませんが，Glucoseの項目では両者どちらかが低い方か高い方に偏っている状態になると予想できます．（つまり，BMIについては大差がなく，Glucoseの値に偏りがある2つの部分集合を生成することで，Glucoseの値によって薬の効き目に違いがあるか調べることができます．）</p><p id="55e8b143-418a-4b40-8328-f94cf476f334" class="">
+</p><p id="9d45e12c-68b9-4e7a-9111-77cb39cbe0d3" class=""><strong>3.  Visualization parameter</strong></p><p id="83577d6d-a200-4683-b657-e3e4ef05806b" class="">最後に，<em><strong>3. Visualization parameter</strong></em>で出力する部分集合の要素の分布を表す<mark class="highlight-teal_background">ヒストグラムのビンの数</mark>を入力します．自由に設定可能ですが，ここでは<strong><mark class="highlight-teal_background">10</mark></strong>とします．</p><p id="13edbfc6-af3f-499f-be12-5fcd4de1fa61" class="">すべての値の入力が完了したら，<em><strong>Run</strong></em>ボタンを押すことで処理が始まります．</p><p id="65b090ce-7b02-4fd2-8ee4-27689b0663ae" class="">
+</p><p id="3ea41f49-8312-454c-88fa-a9932435e59c" class=""><strong>4.  出力結果</strong></p><p id="b1637c05-85e6-4fc8-8066-ac8eb55ec46a" class="">アルゴリズムの実行が正常に終了すると，部分集合のダウンロードが可能となり，出力・計算性能に関する特定の情報が報告されます．</p><p id="b014ab0e-2347-4a46-8e43-8fe4c5ba7e20" class="">
+</p><p id="1bd0226d-45c0-4514-9cca-db53a1b83e77" class="">出力される結果は以下の通りです．</p><ol type="1" id="b65021d2-a1bf-4a96-a07c-29e216b461dc" class="numbered-list" start="1"><li>部分集合のデータ要素の分布を示すヒストグラム</li></ol><ol type="1" id="51e7e1c5-880c-4104-b62a-2b6ef25e0c11" class="numbered-list" start="2"><li>部分集合のデータフレーム</li></ol><ol type="1" id="59d9b0a0-70aa-4225-8b59-04318507eb1f" class="numbered-list" start="3"><li>各項目の<a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/Glossary%20f87ed00540294d5ea70ca0a99c8ffe7e/RBSC%20coefficient%2011343addfbc64daf9474479bbe627bda.html">RBSC係数</a>の実測値</li></ol><ol type="1" id="01114c7c-433f-475d-baf6-ee1ca3e97d42" class="numbered-list" start="4"><li>処理時間</li></ol><p id="d4f4ad80-8cdf-43ad-8dc9-934ac38fdd33" class="">
+</p><p id="4ee76814-3cc8-48e1-b50d-a65e8c8163f9" class="">1と2の項目について順に説明していきます．</p><p id="15428f38-57e5-4f65-b24f-f8f96a887d06" class="">
+</p><p id="0eef0094-b678-4da0-80e0-b545f6caad2c" class="">まず，出力された部分集合のデータ要素の分布はヒストグラムとして表示されます．グラフは縦軸が要素数，横軸が各要素が分布している値を示します．これにより，出力されたデータ要素の分布がどの程度異なるか（2つの部分集合がそれぞれどのような特徴を持つ要素が多いか）を可視化することが可能です．</p><p id="7c447211-6718-41af-b24d-bfacdaf8f3c5" class="">
+</p><p id="637e2817-72d1-4c6a-93e3-fbda7943adef" class="">ヒストグラムに続いて2つの部分集合のデータセットが表示されます．</p><p id="9c7ef15f-d657-4104-8f09-5840e3ac35d2" class="">なお，ヒストグラムとデータセットはそれぞれPNG，CSVファイルとしてダウンロードできます．</p><p id="39ac7c43-3f7f-4e4f-8819-ba0cd6acc2a0" class="">
+</p><p id="b8a037fd-2dd5-4e07-b475-383aeca57359" class="">このようにして生成された2つの部分集合を比較・検討することで，特徴の異なる被験者によってそれぞれ薬の影響にどう変化があるのか調べることが可能となります．</p><p id="c3ccab6e-5e11-4199-bf07-2dacc723dcb2" class="">
+</p><h2 id="35ae7868-4c7f-49ee-9418-e470d6e8cb0b" class="">Slide<mark class="highlight-gray">（スライド資料）</mark></h2><p id="184f5697-7a5d-44b7-8cf4-23bd46cce468" class="">There are images of specific usage.</p><p id="e1d2136e-e824-4f81-8106-d69b89194889" class=""><mark class="highlight-gray">具体的な使用方法に関する画像があります．</mark></p><figure id="6d746767-bc93-4f89-9293-57a63342fb94"><div class="source"><a href="RBSC-SubGen%2026bc7321cd4443e4b9e4f51113519a54/slide.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/369898a8-f76d-4e5b-a041-a0748719cc19/slide.pdf</a></div></figure></div></article></body></html>
